@@ -56,9 +56,9 @@ st.markdown("""
 # Load the trained model
 @st.cache_resource
 def load_model():
-    """Load the trained KNearestNeighbors model"""
+    """Load the trained model"""
     try:
-        model = joblib.load(r"Clustering\tree_model.pkl")
+        model = joblib.load("Clustering/tree_model.pkl")
         return model
     except FileNotFoundError:
         st.error("Model file not found. Please train the model first.")
@@ -69,7 +69,7 @@ def load_model():
 def load_data():
     """Load the original customer data"""
     try:
-        df = pd.read_csv(r"Clustering\Mall_Customers.csv")
+        df = pd.read_csv("Clustering/Mall_Customers.csv")
         return df
     except FileNotFoundError:
         st.error("Data file not found.")
@@ -243,7 +243,7 @@ if model is not None and df is not None:
             st.markdown("### 💡 Cluster Insights")
             
             # Calculate cluster statistics from original data
-            clustered_data = pd.read_csv(r"Clustering\clustered_mall_Customers_.csv")
+            clustered_data = pd.read_csv("Clustering/clustered_mall_Customers_.csv")
             cluster_stats = clustered_data[clustered_data['clusters'] == cluster]
             
             st.markdown(f"""
@@ -264,7 +264,7 @@ if model is not None and df is not None:
         
         with viz_col1:
             # 3D scatter plot showing the prediction
-            clustered_df = pd.read_csv(r"Clustering\clustered_mall_Customers_.csv")
+            clustered_df = pd.read_csv("Clustering/clustered_mall_Customers_.csv")
             
             # Inverse transform to original scale for visualization
             original_scaled = clustered_df[['Age', 'Annual Income', 'Spending Score']].copy()
